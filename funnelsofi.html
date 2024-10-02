@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funnel de Ventas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .funnel {
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px auto;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .step {
+            position: relative;
+            padding: 30px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 700px;
+            object-fit: cover;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        /* Estilos específicos para pantallas pequeñas (móviles) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .step {
+                padding: 15px;
+            }
+
+            .arrow {
+                font-size: 1.5em;
+            }
+
+            img {
+                max-height: 400px; /* Reduce la altura máxima de las imágenes en móviles */
+            }
+
+            .funnel {
+                width: 100%; /* Ajuste completo en dispositivos móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="funnel">
+    <!-- Sección 1 -->
+    <div class="step">
+        <h2>PS Marketing Agency</h2>
+        <img src="https://imgur.com/cL6wfiL.png" alt="PS Marketing Agency">
+    </div>
+    
+    <!-- Sección 2 -->
+    <div class="step">
+        <h2>Sobre Nosotras</h2>
+        <div>
+            <span class="arrow arrow-left" onclick="changeImage('step2', -1)">&#10094;</span>
+            <img id="step2" src="https://imgur.com/mbXvE3M.png" alt="Sobre Nosotras 1">
+            <span class="arrow arrow-right" onclick="changeImage('step2', 1)">&#10095;</span>
+        </div>
+        <img id="step3" src="https://imgur.com/X2jrCiM.png" alt="Sobre Nosotras 2" style="display: none;">
+    </div>
+    
+    <!-- Sección 3 -->
+    <div class="step">
+        <h2>Presentación Planes</h2>
+        <img src="https://imgur.com/yWflp6p.png" alt="Presentación Planes">
+    </div>
+    
+    <!-- Sección 4 -->
+    <div class="step">
+        <h2>Planes</h2>
+        <div>
+            <span class="arrow arrow-left" onclick="changeImage('step4', -1)">&#10094;</span>
+            <img id="step4" src="https://imgur.com/7XJY4YL.png" alt="Planes 1">
+            <span class="arrow arrow-right" onclick="changeImage('step4', 1)">&#10095;</span>
+        </div>
+        <img id="step5" src="https://imgur.com/2xs7xs4.png" alt="Planes 2" style="display: none;">
+        <img id="step6" src="https://imgur.com/SjYuI19.png" alt="Planes 3" style="display: none;">
+        <img id="step7" src="https://imgur.com/7mWNSMZ.png" alt="Planes 4" style="display: none;">
+    </div>
+    
+    <!-- Sección 5 -->
+    <div class="step">
+        <h2>Redes Sociales</h2>
+        <img src="https://imgur.com/dTXCBVz.png" alt="Redes Sociales">
+    </div>
+</div>
+
+<div class="footer">
+    <p>Paulina Marin & Sofia Marenchino</p>
+    <p>Comprendemos tu audiencia, conectamos con vos</p>
+</div>
+
+<script>
+    function changeImage(step, direction) {
+        const images = {
+            'step2': ['step2', 'step3'],
+            'step4': ['step4', 'step5', 'step6', 'step7']
+        };
+        
+        const currentImages = images[step];
+        let currentImgIndex = currentImages.findIndex(img => document.getElementById(img).style.display !== 'none');
+        
+        document.getElementById(currentImages[currentImgIndex]).style.display = 'none';
+        currentImgIndex = (currentImgIndex + direction + currentImages.length) % currentImages.length;
+        document.getElementById(currentImages[currentImgIndex]).style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
