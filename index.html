@@ -48,12 +48,30 @@
             margin-bottom: 20px;
         }
 
+        /* Contenedor fijo para las imágenes */
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-height: 700px;
+            overflow: hidden;
+        }
+
         img {
             width: 100%;
             height: auto;
             border-radius: 10px;
             max-height: 700px;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        img.active {
+            opacity: 1;
+            position: relative;
         }
 
         .arrow {
@@ -80,6 +98,50 @@
             color: #333;
         }
 
+        /* Botón de llamado a la acción */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background-color: #ff6f61;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ff3b2f;
+        }
+
+        /* Logo de Instagram */
+        .instagram-logo {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            animation: bounce 1.5s infinite;
+        }
+
+        .instagram-logo:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        /* Efecto de rebote para el logo de Instagram */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         /* Estilos específicos para pantallas pequeñas (móviles) */
         @media (max-width: 768px) {
             body {
@@ -98,59 +160,73 @@
                 font-size: 1.5em;
             }
 
-            img {
-                max-height: 400px; /* Reduce la altura máxima de las imágenes en móviles */
-            }
-
             .funnel {
                 width: 100%; /* Ajuste completo en dispositivos móviles */
+            }
+
+            .instagram-logo {
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
 </head>
 <body>
 
+<!-- Logo de Instagram -->
+<a href="https://www.instagram.com/ps.mktagency/" target="_blank">
+    <img class="instagram-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+</a>
+
 <div class="funnel">
     <!-- Sección 1 -->
     <div class="step">
         <h2>PS Marketing Agency</h2>
-        <img src="https://imgur.com/cL6wfiL.png" alt="PS Marketing Agency">
+        <div class="image-container">
+            <img src="https://imgur.com/cL6wfiL.png" alt="PS Marketing Agency" class="active">
+        </div>
     </div>
     
     <!-- Sección 2 -->
     <div class="step">
         <h2>Sobre Nosotras</h2>
-        <div>
+        <div class="image-container">
             <span class="arrow arrow-left" onclick="changeImage('step2', -1)">&#10094;</span>
-            <img id="step2" src="https://imgur.com/mbXvE3M.png" alt="Sobre Nosotras 1">
+            <img id="step2_1" src="https://imgur.com/mbXvE3M.png" alt="Sobre Nosotras 1" class="active">
+            <img id="step2_2" src="https://imgur.com/X2jrCiM.png" alt="Sobre Nosotras 2">
             <span class="arrow arrow-right" onclick="changeImage('step2', 1)">&#10095;</span>
         </div>
-        <img id="step3" src="https://imgur.com/X2jrCiM.png" alt="Sobre Nosotras 2" style="display: none;">
     </div>
     
     <!-- Sección 3 -->
     <div class="step">
         <h2>Presentación Planes</h2>
-        <img src="https://imgur.com/yWflp6p.png" alt="Presentación Planes">
+        <div class="image-container">
+            <img src="https://imgur.com/yWflp6p.png" alt="Presentación Planes" class="active">
+        </div>
     </div>
     
     <!-- Sección 4 -->
     <div class="step">
         <h2>Planes</h2>
-        <div>
+        <div class="image-container">
             <span class="arrow arrow-left" onclick="changeImage('step4', -1)">&#10094;</span>
-            <img id="step4" src="https://imgur.com/7XJY4YL.png" alt="Planes 1">
+            <img id="step4_1" src="https://imgur.com/7XJY4YL.png" alt="Planes 1" class="active">
+            <img id="step4_2" src="https://imgur.com/2xs7xs4.png" alt="Planes 2">
+            <img id="step4_3" src="https://imgur.com/SjYuI19.png" alt="Planes 3">
+            <img id="step4_4" src="https://imgur.com/7mWNSMZ.png" alt="Planes 4">
             <span class="arrow arrow-right" onclick="changeImage('step4', 1)">&#10095;</span>
         </div>
-        <img id="step5" src="https://imgur.com/2xs7xs4.png" alt="Planes 2" style="display: none;">
-        <img id="step6" src="https://imgur.com/SjYuI19.png" alt="Planes 3" style="display: none;">
-        <img id="step7" src="https://imgur.com/7mWNSMZ.png" alt="Planes 4" style="display: none;">
     </div>
     
     <!-- Sección 5 -->
     <div class="step">
         <h2>Redes Sociales</h2>
-        <img src="https://imgur.com/dTXCBVz.png" alt="Redes Sociales">
+        <div class="image-container">
+            <img src="https://imgur.com/dTXCBVz.png" alt="Redes Sociales" class="active">
+        </div>
+        <!-- Botón de llamado a la acción -->
+        <a href="https://www.instagram.com/ps.mktagency/" class="cta-button" target="_blank">Síguenos en Instagram</a>
     </div>
 </div>
 
@@ -162,16 +238,16 @@
 <script>
     function changeImage(step, direction) {
         const images = {
-            'step2': ['step2', 'step3'],
-            'step4': ['step4', 'step5', 'step6', 'step7']
+            'step2': ['step2_1', 'step2_2'],
+            'step4': ['step4_1', 'step4_2', 'step4_3', 'step4_4']
         };
         
         const currentImages = images[step];
-        let currentImgIndex = currentImages.findIndex(img => document.getElementById(img).style.display !== 'none');
+        let currentImgIndex = currentImages.findIndex(img => document.getElementById(img).classList.contains('active'));
         
-        document.getElementById(currentImages[currentImgIndex]).style.display = 'none';
+        document.getElementById(currentImages[currentImgIndex]).classList.remove('active');
         currentImgIndex = (currentImgIndex + direction + currentImages.length) % currentImages.length;
-        document.getElementById(currentImages[currentImgIndex]).style.display = 'block';
+        document.getElementById(currentImages[currentImgIndex]).classList.add('active');
     }
 </script>
 
